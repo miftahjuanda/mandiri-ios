@@ -1,0 +1,6 @@
+framework module Pods_mandiri_ios {
+  umbrella header "Pods-mandiri-ios-umbrella.h"
+
+  export *
+  module * { export * }
+}
