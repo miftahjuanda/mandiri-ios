@@ -24,6 +24,12 @@
 		B075CCBD2AF288670020F3C2 /* ListGenreProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B075CCB82AF288670020F3C2 /* ListGenreProtocols.swift */; };
 		B075CCBE2AF288670020F3C2 /* ListGenreInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B075CCB92AF288670020F3C2 /* ListGenreInteractor.swift */; };
 		B075CCC12AF28B070020F3C2 /* GenreViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B075CCC02AF28B070020F3C2 /* GenreViewCell.swift */; };
+		B075CCC82AF293800020F3C2 /* DiscoverPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B075CCC32AF293800020F3C2 /* DiscoverPresenter.swift */; };
+		B075CCC92AF293800020F3C2 /* DiscoverRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B075CCC42AF293800020F3C2 /* DiscoverRouter.swift */; };
+		B075CCCA2AF293800020F3C2 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B075CCC52AF293800020F3C2 /* DiscoverViewController.swift */; };
+		B075CCCB2AF293800020F3C2 /* DiscoverProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = B075CCC62AF293800020F3C2 /* DiscoverProtocols.swift */; };
+		B075CCCC2AF293800020F3C2 /* DiscoverInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B075CCC72AF293800020F3C2 /* DiscoverInteractor.swift */; };
+		B075CCCF2AF295600020F3C2 /* DiscoverViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B075CCCE2AF295600020F3C2 /* DiscoverViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +53,12 @@
 		B075CCB82AF288670020F3C2 /* ListGenreProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListGenreProtocols.swift; sourceTree = "<group>"; };
 		B075CCB92AF288670020F3C2 /* ListGenreInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListGenreInteractor.swift; sourceTree = "<group>"; };
 		B075CCC02AF28B070020F3C2 /* GenreViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreViewCell.swift; sourceTree = "<group>"; };
+		B075CCC32AF293800020F3C2 /* DiscoverPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPresenter.swift; sourceTree = "<group>"; };
+		B075CCC42AF293800020F3C2 /* DiscoverRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverRouter.swift; sourceTree = "<group>"; };
+		B075CCC52AF293800020F3C2 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		B075CCC62AF293800020F3C2 /* DiscoverProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverProtocols.swift; sourceTree = "<group>"; };
+		B075CCC72AF293800020F3C2 /* DiscoverInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverInteractor.swift; sourceTree = "<group>"; };
+		B075CCCE2AF295600020F3C2 /* DiscoverViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewCell.swift; sourceTree = "<group>"; };
 		C416FFD1AF0F02E86E39C657 /* Pods-mandiri-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mandiri-ios.release.xcconfig"; path = "Target Support Files/Pods-mandiri-ios/Pods-mandiri-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +125,7 @@
 		B075CCA42AF276770020F3C2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B075CCC22AF2936B0020F3C2 /* Discover */,
 				B075CCB42AF288390020F3C2 /* List Genre */,
 			);
 			path = Modules;
@@ -165,6 +178,27 @@
 			isa = PBXGroup;
 			children = (
 				B075CCC02AF28B070020F3C2 /* GenreViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B075CCC22AF2936B0020F3C2 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				B075CCCD2AF295420020F3C2 /* Views */,
+				B075CCC32AF293800020F3C2 /* DiscoverPresenter.swift */,
+				B075CCC42AF293800020F3C2 /* DiscoverRouter.swift */,
+				B075CCC52AF293800020F3C2 /* DiscoverViewController.swift */,
+				B075CCC62AF293800020F3C2 /* DiscoverProtocols.swift */,
+				B075CCC72AF293800020F3C2 /* DiscoverInteractor.swift */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
+		B075CCCD2AF295420020F3C2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B075CCCE2AF295600020F3C2 /* DiscoverViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -294,17 +328,23 @@
 				B075CCC12AF28B070020F3C2 /* GenreViewCell.swift in Sources */,
 				B075CCBB2AF288670020F3C2 /* ListGenreRouter.swift in Sources */,
 				B075CCBA2AF288670020F3C2 /* ListGenrePresenter.swift in Sources */,
+				B075CCCC2AF293800020F3C2 /* DiscoverInteractor.swift in Sources */,
 				B075CC902AF273100020F3C2 /* AppDelegate.swift in Sources */,
 				B075CCBC2AF288670020F3C2 /* ListGenreViewController.swift in Sources */,
+				B075CCC82AF293800020F3C2 /* DiscoverPresenter.swift in Sources */,
 				B075CCB12AF284820020F3C2 /* InternalColor.swift in Sources */,
 				B075CCBE2AF288670020F3C2 /* ListGenreInteractor.swift in Sources */,
+				B075CCCB2AF293800020F3C2 /* DiscoverProtocols.swift in Sources */,
 				B075CCAD2AF281EF0020F3C2 /* ViewState.swift in Sources */,
 				B075CCBD2AF288670020F3C2 /* ListGenreProtocols.swift in Sources */,
 				B075CC922AF273100020F3C2 /* SceneDelegate.swift in Sources */,
+				B075CCCA2AF293800020F3C2 /* DiscoverViewController.swift in Sources */,
 				B075CCA92AF2818C0020F3C2 /* StackView.swift in Sources */,
+				B075CCCF2AF295600020F3C2 /* DiscoverViewCell.swift in Sources */,
 				B075CCAF2AF2823B0020F3C2 /* ImageView.swift in Sources */,
 				B075CCB32AF287760020F3C2 /* InternalIcon.swift in Sources */,
 				B075CCAB2AF281BA0020F3C2 /* LabelView.swift in Sources */,
+				B075CCC92AF293800020F3C2 /* DiscoverRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

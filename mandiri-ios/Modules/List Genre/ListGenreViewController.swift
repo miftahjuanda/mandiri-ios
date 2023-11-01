@@ -37,6 +37,7 @@ internal final class ListGenreViewController: UIViewController {
     }
     
     private func setuiGenre() {
+        title = "Genre"
         view.backgroundColor = .colorEbonyClay
         
         view.addSubview(genreTableView)

@@ -10,7 +10,7 @@ import UIKit
 internal class LabelView: UILabel {
     
     init(_ text: String = "",
-         textColor: UIColor = .black,
+         textColor: UIColor = .athensColor,
          alignment: NSTextAlignment = .natural,
          lines: Int = 0,
          font: UIFont = .systemFont(ofSize: 12, weight: .regular)) {
