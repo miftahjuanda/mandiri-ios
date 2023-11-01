@@ -17,12 +17,12 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.backgroundColor = UIColor.white
         
         if let window = window {
-            let mainVC = ViewController()
+            let mainVC = ListGenreRouter.createModule()
             let navigationController = UINavigationController.init(rootViewController: mainVC)
             navigationController.navigationBar.tintColor = .black
             window.rootViewController = navigationController
         }
-        window?.overrideUserInterfaceStyle = .light
+        window?.overrideUserInterfaceStyle = .dark
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
     }

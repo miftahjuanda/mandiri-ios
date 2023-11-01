@@ -19,9 +19,9 @@ internal final class ImageView: UIImageView {
         return indicator
     }()
     
-    init() {
+    init(_ image: UIImage? = nil) {
         super.init(frame: .zero)
-        
+        self.image = image
         setImageView()
     }
     
