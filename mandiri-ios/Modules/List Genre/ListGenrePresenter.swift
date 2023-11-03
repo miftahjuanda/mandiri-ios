@@ -6,7 +6,7 @@
 //  
 //
 
-import Foundation
+import UIKit
 
 internal final class ListGenrePresenter: ViewToPresenterListGenreProtocol {
     // MARK: Properties
@@ -19,6 +19,10 @@ internal final class ListGenrePresenter: ViewToPresenterListGenreProtocol {
     func getListGenre() {
         view?.resultStatus(.loading)
         interactor?.getListGenre()
+    }
+    
+    func navigateToDiscover(vc: UIViewController, id: Int) {
+        router?.navigateToDiscover(vc: vc, id: id)
     }
 }
 

@@ -10,7 +10,7 @@ import UIKit
 
 internal final class DiscoverRouter: PresenterToRouterDiscoverProtocol {
     // MARK: Static methods
-    static func createModule(genre: String) -> UIViewController {
+    static func createModule(id: Int) -> UIViewController {
         
         let viewController = DiscoverViewController()
         
@@ -19,7 +19,7 @@ internal final class DiscoverRouter: PresenterToRouterDiscoverProtocol {
         viewController.presenter = presenter
         viewController.presenter?.router = DiscoverRouter()
         viewController.presenter?.view = viewController
-        viewController.presenter?.interactor = DiscoverInteractor()
+        viewController.presenter?.interactor = DiscoverInteractor(id: id)
         viewController.presenter?.interactor?.presenter = presenter
         
         return viewController

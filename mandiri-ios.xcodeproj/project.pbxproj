@@ -49,6 +49,10 @@
 		B075CCFB2AF4C9EF0020F3C2 /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B075CCFA2AF4C9EF0020F3C2 /* NetworkConfig.swift */; };
 		B075CCFD2AF51F2B0020F3C2 /* ViewStateTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B075CCFC2AF51F2B0020F3C2 /* ViewStateTypes.swift */; };
 		B075CD002AF5261E0020F3C2 /* TableviewCell+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B075CCFF2AF5261E0020F3C2 /* TableviewCell+Ext.swift */; };
+		B075CD022AF5328A0020F3C2 /* DiscoverResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B075CD012AF5328A0020F3C2 /* DiscoverResponse.swift */; };
+		B075CD052AF532C30020F3C2 /* DiscoverEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B075CD042AF532C30020F3C2 /* DiscoverEntity.swift */; };
+		B075CD072AF534020020F3C2 /* DiscoverRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B075CD062AF534020020F3C2 /* DiscoverRequest.swift */; };
+		B075CD092AF53C8F0020F3C2 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B075CD082AF53C8F0020F3C2 /* String+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,6 +101,10 @@
 		B075CCFA2AF4C9EF0020F3C2 /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		B075CCFC2AF51F2B0020F3C2 /* ViewStateTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStateTypes.swift; sourceTree = "<group>"; };
 		B075CCFF2AF5261E0020F3C2 /* TableviewCell+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableviewCell+Ext.swift"; sourceTree = "<group>"; };
+		B075CD012AF5328A0020F3C2 /* DiscoverResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverResponse.swift; sourceTree = "<group>"; };
+		B075CD042AF532C30020F3C2 /* DiscoverEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverEntity.swift; sourceTree = "<group>"; };
+		B075CD062AF534020020F3C2 /* DiscoverRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverRequest.swift; sourceTree = "<group>"; };
+		B075CD082AF53C8F0020F3C2 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		C416FFD1AF0F02E86E39C657 /* Pods-mandiri-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mandiri-ios.release.xcconfig"; path = "Target Support Files/Pods-mandiri-ios/Pods-mandiri-ios.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -230,6 +238,7 @@
 		B075CCC22AF2936B0020F3C2 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				B075CD032AF532B20020F3C2 /* Data */,
 				B075CCCD2AF295420020F3C2 /* Views */,
 				B075CCC32AF293800020F3C2 /* DiscoverPresenter.swift */,
 				B075CCC42AF293800020F3C2 /* DiscoverRouter.swift */,
@@ -296,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				B075CCF72AF4C7E20020F3C2 /* GenreRequest.swift */,
+				B075CD062AF534020020F3C2 /* DiscoverRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -304,6 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				B075CCEE2AF4C25A0020F3C2 /* GenreResponse.swift */,
+				B075CD012AF5328A0020F3C2 /* DiscoverResponse.swift */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -336,8 +347,17 @@
 			isa = PBXGroup;
 			children = (
 				B075CCFF2AF5261E0020F3C2 /* TableviewCell+Ext.swift */,
+				B075CD082AF53C8F0020F3C2 /* String+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B075CD032AF532B20020F3C2 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B075CD042AF532C30020F3C2 /* DiscoverEntity.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		C41D38BE931799DC2BB716E1 /* Frameworks */ = {
@@ -475,6 +495,7 @@
 				B075CC902AF273100020F3C2 /* AppDelegate.swift in Sources */,
 				B075CCD62AF2A4020020F3C2 /* DetailPresenter.swift in Sources */,
 				B075CCBC2AF288670020F3C2 /* ListGenreViewController.swift in Sources */,
+				B075CD052AF532C30020F3C2 /* DiscoverEntity.swift in Sources */,
 				B075CCC82AF293800020F3C2 /* DiscoverPresenter.swift in Sources */,
 				B075CCB12AF284820020F3C2 /* InternalColor.swift in Sources */,
 				B075CCBE2AF288670020F3C2 /* ListGenreInteractor.swift in Sources */,
@@ -493,8 +514,11 @@
 				B075CCCF2AF295600020F3C2 /* DiscoverViewCell.swift in Sources */,
 				B075CCAF2AF2823B0020F3C2 /* ImageView.swift in Sources */,
 				B075CCB32AF287760020F3C2 /* InternalIcon.swift in Sources */,
+				B075CD022AF5328A0020F3C2 /* DiscoverResponse.swift in Sources */,
 				B075CCE12AF3B2450020F3C2 /* InformationViewCell.swift in Sources */,
+				B075CD072AF534020020F3C2 /* DiscoverRequest.swift in Sources */,
 				B075CCF82AF4C7E20020F3C2 /* GenreRequest.swift in Sources */,
+				B075CD092AF53C8F0020F3C2 /* String+Ext.swift in Sources */,
 				B075CCAB2AF281BA0020F3C2 /* LabelView.swift in Sources */,
 				B075CD002AF5261E0020F3C2 /* TableviewCell+Ext.swift in Sources */,
 				B075CCE32AF3B4FC0020F3C2 /* DescriptionViewCell.swift in Sources */,

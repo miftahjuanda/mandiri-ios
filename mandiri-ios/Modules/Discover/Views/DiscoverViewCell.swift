@@ -11,7 +11,6 @@ internal final class DiscoverViewCell: UICollectionViewCell {
     static let reusableId = "DiscoverViewCell"
     
     // MARK: - Properties
-    
     private lazy var mainVStack: StackView = {
         let stack = StackView {
             image
@@ -65,28 +64,37 @@ internal final class DiscoverViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setData(_ discover: Discover) {
+        image.imageWithUrl(with: discover.posterUrl)
+        titlelabel.text = discover.title
+        datelabel.text = discover.releaseDate
+        rateLabel.text = discover.voteAverage
+    }
+    
     private func setUICell() {
         backgroundColor = .clear
         
         titlelabel.snp.makeConstraints { make in
-            make.height.lessThanOrEqualTo(16)
+            make.height.equalTo(16)
         }
         rateHStack.snp.makeConstraints { make in
-            make.height.lessThanOrEqualTo(14)
+            make.height.equalTo(14)
         }
         datelabel.snp.makeConstraints { make in
-            make.height.lessThanOrEqualTo(12)
+            make.height.equalTo(12)
         }
         
         contentView.addSubview(mainVStack)
         mainVStack.snp.makeConstraints { make in
             make.top.leading.trailing.bottom.equalToSuperview()
         }
+        
+        mainVStack.setCustomSpacing(8, after: mainVStack.subviews[0])
+        mainVStack.layoutIfNeeded()
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         image.sd_cancelCurrentImageLoad()
     }
-    
 }

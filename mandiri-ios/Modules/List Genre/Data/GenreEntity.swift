@@ -8,5 +8,6 @@
 import Foundation
 
 internal struct GenreEntity: Decodable {
+    let id: Int
     let name: String
 }

@@ -64,13 +64,11 @@ extension ListGenreViewController: PresenterToViewListGenreProtocol {
         switch type {
         case .loading:
             viewState.showState { }
-            print("Loading..")
         case .success:
             viewState.isHidden = true
             genreTableView.reloadData()
         case .failure(let string):
             viewState.showState(.result(title: string)) { }
-            print("Error data: ", string)
         }
     }
 }
@@ -94,8 +92,8 @@ extension ListGenreViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.cellForRow(at: indexPath)
         
         cell?.animateSelection { [weak self] in
-            let discoverVC = DiscoverRouter.createModule(genre: data.name)
-            self?.navigationController?.pushViewController(discoverVC, animated: true)
+            guard let self = self else { return }
+            self.presenter?.navigateToDiscover(vc: self, id: data.id)
         }
     }
 }

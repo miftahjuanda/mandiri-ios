@@ -12,6 +12,7 @@ internal final class DiscoverViewController: UIViewController {
     // MARK: - Properties
     weak var presenter: ViewToPresenterDiscoverProtocol?
     
+    private var viewState = ViewState()
     private lazy var discoverCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: (view.frame.width/2) - 12,
@@ -36,6 +37,7 @@ internal final class DiscoverViewController: UIViewController {
         super.viewDidLoad()
         
         setUiDiscover()
+        presenter?.getListDiscover()
     }
     
     private func setUiDiscover() {
@@ -48,21 +50,40 @@ internal final class DiscoverViewController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(7)
             make.bottom.equalToSuperview()
         })
+        
+        view.addSubview(viewState)
+        viewState.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.trailing.leading.equalToSuperview()
+        }
     }
     
 }
 
 extension DiscoverViewController: PresenterToViewDiscoverProtocol{
     // TODO: Implement View Output Methods
+    func resultStatus(_ type: ViewStateTypes) {
+        switch type {
+        case .loading:
+            viewState.showState { }
+        case .success:
+            viewState.isHidden = true
+            discoverCollectionView.reloadData()
+        case .failure(let string):
+            viewState.showState(.result(title: string)) { }
+        }
+    }
 }
 
 extension DiscoverViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 9
+        return presenter?.listDiscover.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiscoverViewCell.reusableId, for: indexPath) as? DiscoverViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiscoverViewCell.reusableId, for: indexPath) as? DiscoverViewCell, let data = presenter?.listDiscover[indexPath.row] {
+            cell.setData(data)
             return cell
         } else {
             return UICollectionViewCell()

@@ -25,4 +25,8 @@ internal final class ListGenreRouter: PresenterToRouterListGenreProtocol {
         return viewController
     }
     
+    func navigateToDiscover(vc: UIViewController, id: Int) {
+        let discoverVC = DiscoverRouter.createModule(id: id)
+        vc.navigationController?.pushViewController(discoverVC, animated: true)
+    }
 }

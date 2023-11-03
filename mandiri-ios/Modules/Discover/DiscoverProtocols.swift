@@ -10,29 +10,34 @@ import Foundation
 
 // MARK: View Output (Presenter -> View)
 protocol PresenterToViewDiscoverProtocol: AnyObject {
-   
+    func resultStatus(_ type: ViewStateTypes)
 }
 
 
 // MARK: View Input (View -> Presenter)
 protocol ViewToPresenterDiscoverProtocol: AnyObject {
-    
     var view: PresenterToViewDiscoverProtocol? { get set }
     var interactor: PresenterToInteractorDiscoverProtocol? { get set }
     var router: PresenterToRouterDiscoverProtocol? { get set }
+    
+    var listDiscover: [Discover] { get }
+    
+    func getListDiscover()
 }
 
 
 // MARK: Interactor Input (Presenter -> Interactor)
 protocol PresenterToInteractorDiscoverProtocol {
-    
     var presenter: InteractorToPresenterDiscoverProtocol? { get set }
+    
+    func getListDiscover(page: Int)
 }
 
 
 // MARK: Interactor Output (Interactor -> Presenter)
 protocol InteractorToPresenterDiscoverProtocol {
-    
+    func resultListDiscover(discover: DiscoverEntity)
+    func resultError(error: RequestError)
 }
 
 

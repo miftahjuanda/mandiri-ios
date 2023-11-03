@@ -6,7 +6,7 @@
 //  
 //
 
-import Foundation
+import UIKit
 
 // MARK: View Output (Presenter -> View)
 protocol PresenterToViewListGenreProtocol: AnyObject {
@@ -22,6 +22,7 @@ protocol ViewToPresenterListGenreProtocol: AnyObject {
     var resultGenre: [GenreEntity] { get }
 
     func getListGenre()
+    func navigateToDiscover(vc: UIViewController, id: Int)
 }
 
 
@@ -30,7 +31,6 @@ protocol PresenterToInteractorListGenreProtocol {
     var presenter: InteractorToPresenterListGenreProtocol? { get set }
     
     func getListGenre()
-    
 }
 
 
@@ -43,5 +43,5 @@ protocol InteractorToPresenterListGenreProtocol {
 
 // MARK: Router Input (Presenter -> Router)
 protocol PresenterToRouterListGenreProtocol {
-    
+    func navigateToDiscover(vc: UIViewController, id: Int)
 }
