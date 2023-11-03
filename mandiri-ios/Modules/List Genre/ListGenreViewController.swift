@@ -19,7 +19,6 @@ internal final class ListGenreViewController: UIViewController {
         tableView.dataSource = self
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
-        tableView.estimatedSectionHeaderHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0

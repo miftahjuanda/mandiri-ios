@@ -9,7 +9,6 @@
 import Foundation
 
 internal final class ListGenrePresenter: ViewToPresenterListGenreProtocol {
-
     // MARK: Properties
     weak var view: PresenterToViewListGenreProtocol?
     var interactor: PresenterToInteractorListGenreProtocol?

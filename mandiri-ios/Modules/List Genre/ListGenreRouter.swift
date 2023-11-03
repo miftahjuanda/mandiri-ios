@@ -6,11 +6,9 @@
 //  
 //
 
-import Foundation
 import UIKit
 
 internal final class ListGenreRouter: PresenterToRouterListGenreProtocol {
-    
     // MARK: Static methods
     static func createModule() -> UIViewController {
         

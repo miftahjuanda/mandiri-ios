@@ -14,4 +14,6 @@ internal extension UIColor {
     static let ebonyColor = UIColor(named: "ColorEbony") ?? .red
     ///FAFAFB
     static let athensColor = UIColor(named: "ColorAthens") ?? .red
+    ///3B3D42
+    static let tunaColor = UIColor(named: "ColorTuna") ?? .red
 }

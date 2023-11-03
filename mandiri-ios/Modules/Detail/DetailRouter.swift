@@ -1,5 +1,5 @@
 //
-//  DiscoverRouter.swift
+//  DetailRouter.swift
 //  mandiri-ios
 //
 //  Created by Miftah Juanda Batubara on 01/11/23.
@@ -8,18 +8,18 @@
 
 import UIKit
 
-internal final class DiscoverRouter: PresenterToRouterDiscoverProtocol {
+internal final class DetailRouter: PresenterToRouterDetailProtocol {
     // MARK: Static methods
     static func createModule() -> UIViewController {
         
-        let viewController = DiscoverViewController()
+        let viewController = DetailViewController()
         
-        let presenter: ViewToPresenterDiscoverProtocol & InteractorToPresenterDiscoverProtocol = DiscoverPresenter()
+        let presenter: ViewToPresenterDetailProtocol & InteractorToPresenterDetailProtocol = DetailPresenter()
         
         viewController.presenter = presenter
-        viewController.presenter?.router = DiscoverRouter()
+        viewController.presenter?.router = DetailRouter()
         viewController.presenter?.view = viewController
-        viewController.presenter?.interactor = DiscoverInteractor()
+        viewController.presenter?.interactor = DetailInteractor()
         viewController.presenter?.interactor?.presenter = presenter
         
         return viewController
