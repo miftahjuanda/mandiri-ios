@@ -23,6 +23,7 @@ protocol ViewToPresenterDiscoverProtocol: AnyObject {
     var listDiscover: [Discover] { get }
     
     func getListDiscover()
+    func getPagination()
 }
 
 
@@ -37,6 +38,7 @@ protocol PresenterToInteractorDiscoverProtocol {
 // MARK: Interactor Output (Interactor -> Presenter)
 protocol InteractorToPresenterDiscoverProtocol {
     func resultListDiscover(discover: DiscoverEntity)
+    
     func resultError(error: RequestError)
 }
 

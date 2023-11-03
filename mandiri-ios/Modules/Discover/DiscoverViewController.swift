@@ -90,4 +90,12 @@ extension DiscoverViewController: UICollectionViewDelegate, UICollectionViewData
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let itemsCount = collectionView.numberOfItems(inSection: indexPath.section)
+        
+        if indexPath.row == itemsCount - 1 {
+            presenter?.getPagination()
+        }
+    }
+    
 }

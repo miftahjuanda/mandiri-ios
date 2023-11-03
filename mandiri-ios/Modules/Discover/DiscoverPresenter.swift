@@ -16,6 +16,8 @@ internal final class DiscoverPresenter: ViewToPresenterDiscoverProtocol {
     
     var listDiscover: [Discover] = []
     private var page: Int = 1
+    private var maxPage: Int = 1
+    private var isFetching = false
     
     func getListDiscover() {
         listDiscover.removeAll()
@@ -23,11 +25,29 @@ internal final class DiscoverPresenter: ViewToPresenterDiscoverProtocol {
         interactor?.getListDiscover(page: page)
     }
     
+    func getPagination() {
+        if !isFetching {
+            interactor?.getListDiscover(page: page)
+        }
+    }
 }
 
 extension DiscoverPresenter: InteractorToPresenterDiscoverProtocol {
     func resultListDiscover(discover: DiscoverEntity) {
-        listDiscover.append(contentsOf: discover.discover)
+        page = discover.page
+        maxPage = discover.totalPages
+        isFetching = true
+        
+        if page > maxPage || discover.discover.isEmpty {
+            listDiscover.append(contentsOf: [])
+            isFetching = false
+        } else {
+            listDiscover.append(contentsOf: discover.discover)
+            
+            isFetching = false
+            page += 1
+        }
+        
         view?.resultStatus(.success)
     }
     
