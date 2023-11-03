@@ -24,12 +24,10 @@ internal final class ViewState: UIView {
         image.contentMode = .scaleAspectFit
         return image
     }()
-    private let titleLabel = LabelView(textColor: .black,
-                                       alignment: .center,
+    private let titleLabel = LabelView(alignment: .center,
                                        font: .systemFont(ofSize: 13,
                                                          weight: .medium))
-    private let descriptionLabel = LabelView(textColor: .black,
-                                             alignment: .center,
+    private let descriptionLabel = LabelView(alignment: .center,
                                              font: .systemFont(ofSize: 10,
                                                                weight: .regular))
     
@@ -37,8 +35,8 @@ internal final class ViewState: UIView {
         let activity = UIActivityIndicatorView()
         activity.translatesAutoresizingMaskIntoConstraints = false
         activity.style = .medium
-        activity.tintColor = .black
-        activity.color = .black
+        activity.tintColor = .white
+        activity.color = .white
         activity.stopAnimating()
         return activity
     }()

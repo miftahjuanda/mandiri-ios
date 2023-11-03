@@ -17,9 +17,9 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.backgroundColor = UIColor.white
         
         if let window = window {
-            let mainVC = DetailRouter.createModule()
+            let mainVC = ListGenreRouter.createModule()
             let navigationController = UINavigationController.init(rootViewController: mainVC)
-            navigationController.navigationBar.tintColor = .black
+            navigationController.navigationBar.tintColor = .athensColor
             window.rootViewController = navigationController
         }
         window?.overrideUserInterfaceStyle = .dark

@@ -10,7 +10,7 @@ import UIKit
 
 internal final class DiscoverRouter: PresenterToRouterDiscoverProtocol {
     // MARK: Static methods
-    static func createModule() -> UIViewController {
+    static func createModule(genre: String) -> UIViewController {
         
         let viewController = DiscoverViewController()
         
