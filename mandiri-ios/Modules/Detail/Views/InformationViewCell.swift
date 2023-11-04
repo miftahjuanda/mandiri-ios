@@ -20,10 +20,10 @@ internal final class InformationViewCell: UITableViewCell {
         .setPadding(.init(top: 10, left: 20, bottom: 10, right: 20))
         .setSpacing(10)
     
-    private var adult =  InformationComponent(icon: .icAdult, title: "Adult")
-    private var duration = InformationComponent(icon: .icDuration, title: "1h 56m")
-    private var voteAverage = InformationComponent(title: "7.3/10", desc: "2.5K Review")
-    private var release = InformationComponent(icon: .icRelease, title: "Nov 23 2020", desc: "US")
+    private var adult =  InformationComponent(icon: .icAdult)
+    private var duration = InformationComponent(icon: .icDuration)
+    private var voteAverage = InformationComponent()
+    private var release = InformationComponent()
     private let spacer = SpacerView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -34,6 +34,14 @@ internal final class InformationViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setData(information: DetailEntity) {
+        adult.isHidden = !information.adult
+        
+        duration.setData(icon: .icDuration, title: information.runtime, desc: " ")
+        voteAverage.setData(icon: .icStar, title: information.voteAverage, desc: information.voteCount)
+        release.setData(icon: .icRelease, title: information.releaseDate.convertDateString() ?? "", desc: information.productionCountrie)
     }
     
     private func setUiCellInformation() {

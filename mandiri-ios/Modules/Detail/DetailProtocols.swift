@@ -10,29 +10,40 @@ import Foundation
 
 // MARK: View Output (Presenter -> View)
 protocol PresenterToViewDetailProtocol: AnyObject {
-   
+    func resultStatus(_ type: ViewStateTypes)
+    func resultReview(_ type: ViewStateTypes)
 }
 
 
 // MARK: View Input (View -> Presenter)
 protocol ViewToPresenterDetailProtocol: AnyObject {
-    
     var view: PresenterToViewDetailProtocol? { get set }
     var interactor: PresenterToInteractorDetailProtocol? { get set }
     var router: PresenterToRouterDetailProtocol? { get set }
+    
+    var detailEntity: DetailEntity { get }
+    
+    func fetchAllEndpoint()
 }
 
 
 // MARK: Interactor Input (Presenter -> Interactor)
 protocol PresenterToInteractorDetailProtocol {
-    
     var presenter: InteractorToPresenterDetailProtocol? { get set }
+    
+    func getDetail()
+    func getVideo()
+    func getReview()
 }
 
 
 // MARK: Interactor Output (Interactor -> Presenter)
 protocol InteractorToPresenterDetailProtocol {
+    func resultDetail(detail: DetailEntity)
+    func resultVideo(video: VideoEntity)
+    func resultReview(review: ReviewEntity)
     
+    func resultError(error: RequestError)
 }
 
 

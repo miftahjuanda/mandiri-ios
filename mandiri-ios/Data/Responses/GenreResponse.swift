@@ -7,12 +7,12 @@
 
 import Foundation
 
-internal struct GenreResponse: Codable {
+internal struct GenreResponse: Decodable {
     let genres: [Genre]?
 }
 
 // MARK: - Genre
-internal struct Genre: Codable {
+internal struct Genre: Decodable {
     let id: Int?
     let name: String?
 }

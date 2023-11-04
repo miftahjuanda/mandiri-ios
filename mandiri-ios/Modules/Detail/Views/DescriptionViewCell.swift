@@ -28,12 +28,11 @@ internal final class DescriptionViewCell: UITableViewCell {
         return label
     }()
     
-    private let descriptionLabel = LabelView()
+    private let descriptionLabel = LabelView().setPadding(.init(top: 1, left: 0, bottom: 1, right: 0))
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        setData(genre: "", description: "")
         setUiDescription()
     }
     
@@ -42,8 +41,8 @@ internal final class DescriptionViewCell: UITableViewCell {
     }
     
     func setData(genre: String, description: String) {
-        genreLabel.text = "Animation, Action, Adventure."
-        descriptionLabel.text = "Over many missions and against impossible odds, Dom Toretto and his family have outsmarted, out-nerved and outdriven every foe in their path. Now, they confront the most lethal opponent they've ever faced: A terrifying threat emerging from the shadows of the past who's fueled by blood revenge, and who is determined to shatter this family and destroy everything—and everyone—that Dom loves, forever."
+        descriptionLabel.text = description
+        genreLabel.text = genre
     }
     
     private func setUiDescription() {

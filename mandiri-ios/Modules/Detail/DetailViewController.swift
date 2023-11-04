@@ -13,6 +13,7 @@ internal final class DetailViewController: UIViewController {
     // MARK: - Properties
     weak var presenter: ViewToPresenterDetailProtocol?
     
+    private var viewState = ViewState()
     private lazy var headerVStack = StackView(.vertical) {
         webView
         titleLabel
@@ -24,13 +25,10 @@ internal final class DetailViewController: UIViewController {
         web.snp.makeConstraints { make in
             make.height.equalTo(view.frame.width/1.7)
         }
-        if let videoURL = URL(string: "https://www.youtube.com/embed/6SGUlutHc1w") {
-            let request = URLRequest(url: videoURL)
-            web.load(request)
-        }
+        
         return web
     }()
-    private let titleLabel = LabelView("Spider-Man: Across the Spider-Verse.", font: .boldSystemFont(ofSize: 18))
+    private let titleLabel = LabelView(font: .boldSystemFont(ofSize: 18))
         .setPadding(.init(top: 20, left: 15, bottom: 10, right: 15))
     private let spacerInHeader = SpacerView()
     
@@ -57,6 +55,7 @@ internal final class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        presenter?.fetchAllEndpoint()
         setUIDetail()
     }
     
@@ -74,11 +73,45 @@ internal final class DetailViewController: UIViewController {
             make.top.equalTo(headerVStack.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
+        
+        view.addSubview(viewState)
+        viewState.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.trailing.leading.equalToSuperview()
+        }
+    }
+    
+    private func bindData() {
+        guard let bindData = presenter?.detailEntity else { return }
+        titleLabel.text = bindData.title
+        
+        if let videoURL = URL(string: bindData.videoEntity.url) {
+            let request = URLRequest(url: videoURL)
+            webView.load(request)
+        }
     }
 }
 
 extension DetailViewController: PresenterToViewDetailProtocol{
     // TODO: Implement View Output Methods
+    func resultStatus(_ type: ViewStateTypes) {
+        switch type {
+        case .loading:
+            viewState.showState { }
+        case .success:
+            viewState.isHidden = true
+            bindData()
+            detailTableView.reloadData()
+        case .failure(let string):
+            viewState.showState(.result(title: string)) { }
+        }
+    }
+    
+    func resultReview(_ type: ViewStateTypes) {
+        detailTableView.reloadData()
+//        reloadSections(IndexSet(integer: 2), with: .automatic)
+    }
 }
 
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -91,7 +124,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         case 0, 1:
             return 1
         default:
-            return 7
+            return presenter?.detailEntity.reviewEntity.reviews.count ?? 0
         }
     }
     
@@ -99,14 +132,23 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cellInformation = tableView.dequeueReusableCell(withIdentifier: InformationViewCell.reusableId, for: indexPath) as! InformationViewCell
+            if let data = presenter?.detailEntity {
+                cellInformation.setData(information: data)
+            }
             
             return cellInformation
         case 1:
             let cellDescription = tableView.dequeueReusableCell(withIdentifier: DescriptionViewCell.reusableId, for: indexPath) as! DescriptionViewCell
+            if let data = presenter?.detailEntity {
+                cellDescription.setData(genre: data.genres, description: data.overview)
+            }
             
             return cellDescription
         default:
             let cellReview = tableView.dequeueReusableCell(withIdentifier: ReviewViewCell.reusableId, for: indexPath) as! ReviewViewCell
+            if let data = presenter?.detailEntity.reviewEntity.reviews[indexPath.row] {
+                cellReview.setData(review: data)
+            }
             
             return cellReview
         }

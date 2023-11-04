@@ -10,7 +10,7 @@ import UIKit
 
 internal final class DetailRouter: PresenterToRouterDetailProtocol {
     // MARK: Static methods
-    static func createModule() -> UIViewController {
+    static func createModule(id: Int) -> UIViewController {
         
         let viewController = DetailViewController()
         
@@ -19,7 +19,7 @@ internal final class DetailRouter: PresenterToRouterDetailProtocol {
         viewController.presenter = presenter
         viewController.presenter?.router = DetailRouter()
         viewController.presenter?.view = viewController
-        viewController.presenter?.interactor = DetailInteractor()
+        viewController.presenter?.interactor = DetailInteractor(id: id)
         viewController.presenter?.interactor?.presenter = presenter
         
         return viewController

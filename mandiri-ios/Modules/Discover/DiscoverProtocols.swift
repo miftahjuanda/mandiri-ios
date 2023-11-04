@@ -6,7 +6,7 @@
 //  
 //
 
-import Foundation
+import UIKit
 
 // MARK: View Output (Presenter -> View)
 protocol PresenterToViewDiscoverProtocol: AnyObject {
@@ -24,6 +24,8 @@ protocol ViewToPresenterDiscoverProtocol: AnyObject {
     
     func getListDiscover()
     func getPagination()
+    
+    func navigateToDetail(vc: UIViewController, id: Int)
 }
 
 
@@ -45,5 +47,5 @@ protocol InteractorToPresenterDiscoverProtocol {
 
 // MARK: Router Input (Presenter -> Router)
 protocol PresenterToRouterDiscoverProtocol {
-    
+    func navigateToDetail(vc: UIViewController, id: Int)
 }

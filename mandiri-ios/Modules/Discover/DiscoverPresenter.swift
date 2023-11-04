@@ -6,7 +6,7 @@
 //  
 //
 
-import Foundation
+import UIKit
 
 internal final class DiscoverPresenter: ViewToPresenterDiscoverProtocol {
     // MARK: Properties
@@ -29,6 +29,10 @@ internal final class DiscoverPresenter: ViewToPresenterDiscoverProtocol {
         if !isFetching {
             interactor?.getListDiscover(page: page)
         }
+    }
+    
+    func navigateToDetail(vc: UIViewController, id: Int) {
+        router?.navigateToDetail(vc: vc, id: id)
     }
 }
 

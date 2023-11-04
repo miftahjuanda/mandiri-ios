@@ -28,7 +28,6 @@ internal final class ReviewViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        setData()
         setUiReviewCell()
     }
     
@@ -36,11 +35,11 @@ internal final class ReviewViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setData() {
-        image.image = .actions
-        authorLabel.text = "data.author"
-        ratingLabel.text = "Rating: 7.4"
-        reviewLabel.text = "data.content"
+    func setData(review: Reviews) {
+        image.imageWithUrl(with: review.avatarUrl)
+        authorLabel.text = review.author
+        ratingLabel.text = "Rating: \(review.rating)"
+        reviewLabel.text = review.content
     }
     
     private func setUiReviewCell() {

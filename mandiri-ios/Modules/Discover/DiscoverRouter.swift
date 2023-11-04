@@ -25,4 +25,9 @@ internal final class DiscoverRouter: PresenterToRouterDiscoverProtocol {
         return viewController
     }
     
+    func navigateToDetail(vc: UIViewController, id: Int) {
+        let detailVC = DetailRouter.createModule(id: id)
+        vc.navigationController?.pushViewController(detailVC, animated: true)
+    }
+    
 }

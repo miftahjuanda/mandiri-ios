@@ -82,7 +82,7 @@ extension DiscoverViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiscoverViewCell.reusableId, for: indexPath) as? DiscoverViewCell, let data = presenter?.listDiscover[indexPath.row] {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiscoverViewCell.reusableId, for: indexPath) as? DiscoverViewCell, let data = presenter?.listDiscover[indexPath.item] {
             cell.setData(data)
             return cell
         } else {
@@ -90,10 +90,16 @@ extension DiscoverViewController: UICollectionViewDelegate, UICollectionViewData
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let data = presenter?.listDiscover[indexPath.item] {
+            presenter?.navigateToDetail(vc: self, id: data.id)
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let itemsCount = collectionView.numberOfItems(inSection: indexPath.section)
         
-        if indexPath.row == itemsCount - 1 {
+        if indexPath.item == itemsCount - 1 {
             presenter?.getPagination()
         }
     }
