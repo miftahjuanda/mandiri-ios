@@ -37,13 +37,13 @@ internal final class ReviewViewCell: UITableViewCell {
     }
     
     func setData(review: Reviews) {
-        viewState.isHidden = true
-        image.isHidden = false
-        
         image.imageWithUrl(with: review.avatarUrl)
         authorLabel.text = review.author
         ratingLabel.text = "Rating: \(review.rating)"
         reviewLabel.text = review.content
+        
+        viewState.removeFromSuperview()
+        image.isHidden = false
     }
     
     func setEmptyView() {
@@ -88,5 +88,10 @@ internal final class ReviewViewCell: UITableViewCell {
         }
         viewState.isHidden = true
         mainVStack.layoutIfNeeded()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        image.sd_cancelCurrentImageLoad()
     }
 }

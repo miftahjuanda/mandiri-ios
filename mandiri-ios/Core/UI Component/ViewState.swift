@@ -77,6 +77,7 @@ internal final class ViewState: UIView {
             }
             break
         }
+        layoutIfNeeded()
     }
     
     deinit {

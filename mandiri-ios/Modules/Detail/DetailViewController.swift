@@ -43,6 +43,7 @@ internal final class DetailViewController: UIViewController {
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.isHidden = true
         if #available(iOS 15.0, *) {
             tableView.sectionHeaderTopPadding = 0
             tableView.sectionFooterHeight = 0
@@ -80,6 +81,9 @@ internal final class DetailViewController: UIViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide)
             make.trailing.leading.equalToSuperview()
         }
+        
+        headerVStack.isHidden = true
+        detailTableView.isHidden = true
     }
     
     private func bindData() {
@@ -101,21 +105,24 @@ extension DetailViewController: PresenterToViewDetailProtocol{
             viewState.showState { }
         case .success:
             viewState.isHidden = true
+            headerVStack.isHidden = false
+            detailTableView.isHidden = false
+            
             bindData()
             detailTableView.reloadData()
         case .failure(let string):
+            headerVStack.isHidden = true
+            detailTableView.isHidden = true
             viewState.showState(.result(title: string)) { }
         }
     }
     
     func resultReview(_ type: ViewStateTypes) {
         switch type {
-        case .loading:
-            viewState.showState { }
-        case .success:
-            detailTableView.reloadSections(IndexSet(integer: 2), with: .automatic)
-        case .failure(let string):
-            viewState.showState(.result(title: string)) { }
+        case .success, .failure(_):
+            detailTableView.reloadSections(IndexSet(integer: 2), with: .none)
+        default:
+            break
         }
     }
 }
@@ -129,9 +136,11 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         switch section {
         case 0, 1:
             return 1
-        default:
+        case 2:
             let data = presenter?.detailEntity.reviewEntity.reviews.count ?? 0
             return data == 0 ? 1 : data
+        default:
+            return 0
         }
     }
     
@@ -151,7 +160,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             }
             
             return cellDescription
-        default:
+        case 2:
             let cellReview = tableView.dequeueReusableCell(withIdentifier: ReviewViewCell.reusableId, for: indexPath) as! ReviewViewCell
             let data = presenter?.detailEntity.reviewEntity.reviews.count ?? 0
             
@@ -163,6 +172,8 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             return cellReview
+        default:
+            return UITableViewCell()
         }
     }
     

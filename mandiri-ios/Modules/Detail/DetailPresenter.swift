@@ -77,7 +77,7 @@ extension DetailPresenter: InteractorToPresenterDetailProtocol {
         if page <= maxPage {
             if review.reviews.isEmpty {
                 isFetching = false
-                
+                view?.resultReview(.failure(""))
             } else {
                 detailEntity.reviewEntity.reviews.append(contentsOf: review.reviews)
                 page += 1
@@ -86,7 +86,7 @@ extension DetailPresenter: InteractorToPresenterDetailProtocol {
             }
         } else {
             isFetching = false
-            view?.resultReview(.success)
+            view?.resultReview(.failure(""))
         }
         groupQueue.leave()
     }
