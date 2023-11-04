@@ -43,8 +43,8 @@ internal final class DetailInteractor: PresenterToInteractorDetailProtocol {
         })
     }
     
-    func getReview() {
-        AlamofireHttpClient().request(url: ReviewRequest(id: id), completion: { [weak self] result in
+    func getReview(page: Int) {
+        AlamofireHttpClient().request(url: ReviewRequest(id: id, page: page), completion: { [weak self] result in
             guard let self = self else { return }
             
             switch result {

@@ -109,8 +109,14 @@ extension DetailViewController: PresenterToViewDetailProtocol{
     }
     
     func resultReview(_ type: ViewStateTypes) {
-        detailTableView.reloadData()
-//        reloadSections(IndexSet(integer: 2), with: .automatic)
+        switch type {
+        case .loading:
+            viewState.showState { }
+        case .success:
+            detailTableView.reloadSections(IndexSet(integer: 2), with: .automatic)
+        case .failure(let string):
+            viewState.showState(.result(title: string)) { }
+        }
     }
 }
 
@@ -124,7 +130,8 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         case 0, 1:
             return 1
         default:
-            return presenter?.detailEntity.reviewEntity.reviews.count ?? 0
+            let data = presenter?.detailEntity.reviewEntity.reviews.count ?? 0
+            return data == 0 ? 1 : data
         }
     }
     
@@ -146,11 +153,24 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             return cellDescription
         default:
             let cellReview = tableView.dequeueReusableCell(withIdentifier: ReviewViewCell.reusableId, for: indexPath) as! ReviewViewCell
-            if let data = presenter?.detailEntity.reviewEntity.reviews[indexPath.row] {
-                cellReview.setData(review: data)
-            }
+            let data = presenter?.detailEntity.reviewEntity.reviews.count ?? 0
             
+            if data == 0 {
+                cellReview.setEmptyView()
+            } else {
+                if let review = presenter?.detailEntity.reviewEntity.reviews[indexPath.row] {
+                    cellReview.setData(review: review)
+                }
+            }
             return cellReview
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let itemsCount = tableView.numberOfRows(inSection: 2)
+        
+        if indexPath.section == 2 && indexPath.item == itemsCount - 1 && itemsCount != 0 {
+            presenter?.getPagiantionReview()
         }
     }
 }

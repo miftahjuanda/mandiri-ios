@@ -15,6 +15,10 @@ internal final  class DetailPresenter: ViewToPresenterDetailProtocol {
     var router: PresenterToRouterDetailProtocol?
     
     var detailEntity: DetailEntity = .init()
+    private var page: Int = 1
+    private var maxPage: Int = 1
+    private var isFetching = false
+    
     private var groupQueue = DispatchGroup()
     
     func fetchAllEndpoint() {
@@ -30,6 +34,12 @@ internal final  class DetailPresenter: ViewToPresenterDetailProtocol {
         }
     }
     
+    func getPagiantionReview() {
+        if !isFetching && page <= maxPage {
+            getReview()
+        }
+    }
+    
     private func getDetail() {
         groupQueue.enter()
         interactor?.getDetail()
@@ -41,8 +51,10 @@ internal final  class DetailPresenter: ViewToPresenterDetailProtocol {
     }
     
     private func getReview() {
+        isFetching = true
+        
         groupQueue.enter()
-        interactor?.getReview()
+        interactor?.getReview(page: page)
     }
     
 }
@@ -59,7 +71,23 @@ extension DetailPresenter: InteractorToPresenterDetailProtocol {
     }
     
     func resultReview(review: ReviewEntity) {
-        detailEntity.reviewEntity = review
+        page = review.page
+        maxPage = review.totalPages
+        
+        if page <= maxPage {
+            if review.reviews.isEmpty {
+                isFetching = false
+                
+            } else {
+                detailEntity.reviewEntity.reviews.append(contentsOf: review.reviews)
+                page += 1
+                isFetching = false
+                view?.resultReview(.success)
+            }
+        } else {
+            isFetching = false
+            view?.resultReview(.success)
+        }
         groupQueue.leave()
     }
     

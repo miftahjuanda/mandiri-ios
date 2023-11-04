@@ -24,6 +24,7 @@ protocol ViewToPresenterDetailProtocol: AnyObject {
     var detailEntity: DetailEntity { get }
     
     func fetchAllEndpoint()
+    func getPagiantionReview()
 }
 
 
@@ -33,7 +34,7 @@ protocol PresenterToInteractorDetailProtocol {
     
     func getDetail()
     func getVideo()
-    func getReview()
+    func getReview(page: Int)
 }
 
 

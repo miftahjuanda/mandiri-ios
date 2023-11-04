@@ -26,7 +26,7 @@ internal final class DiscoverPresenter: ViewToPresenterDiscoverProtocol {
     }
     
     func getPagination() {
-        if !isFetching {
+        if !isFetching && page <= maxPage {
             interactor?.getListDiscover(page: page)
         }
     }
@@ -42,7 +42,7 @@ extension DiscoverPresenter: InteractorToPresenterDiscoverProtocol {
         maxPage = discover.totalPages
         isFetching = true
         
-        if page > maxPage || discover.discover.isEmpty {
+        if page <= maxPage && discover.discover.isEmpty {
             listDiscover.append(contentsOf: [])
             isFetching = false
         } else {

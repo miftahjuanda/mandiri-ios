@@ -67,7 +67,8 @@ internal final class DataProcessor: ProcessingProtocol {
         } ?? []
         return ReviewEntity(id: review?.id ?? 0,
                             page: review?.page ?? 0,
-                            reviews: data)
+                            reviews: data,
+                            totalPages: review?.totalPages ?? 0)
     }
     
     func mapToVideoEntity(video: VideoResponse?) -> VideoEntity {

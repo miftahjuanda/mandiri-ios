@@ -10,6 +10,7 @@ import UIKit
 internal final class ReviewViewCell: UITableViewCell {
     static let reusableId = "ReviewViewCell"
     
+    private var viewState = ViewState()
     private var image: ImageView = {
         let image = ImageView()
         image.snp.makeConstraints { make in
@@ -36,10 +37,18 @@ internal final class ReviewViewCell: UITableViewCell {
     }
     
     func setData(review: Reviews) {
+        viewState.isHidden = true
+        image.isHidden = false
+        
         image.imageWithUrl(with: review.avatarUrl)
         authorLabel.text = review.author
         ratingLabel.text = "Rating: \(review.rating)"
         reviewLabel.text = review.content
+    }
+    
+    func setEmptyView() {
+        image.isHidden = true
+        viewState.showState(.result(title: "Empty review!")) { }
     }
     
     private func setUiReviewCell() {
@@ -72,6 +81,12 @@ internal final class ReviewViewCell: UITableViewCell {
             make.bottom.equalTo(contentView).inset(1)
         }
         
+        contentView.addSubview(viewState)
+        viewState.snp.makeConstraints { make in
+            make.top.bottom.trailing.leading.equalTo(contentView)
+            make.height.equalTo(160)
+        }
+        viewState.isHidden = true
         mainVStack.layoutIfNeeded()
     }
 }
